@@ -151,11 +151,14 @@ var defaults = {
 };
 params = params || {};
 for (var def in defaults) {
+    if (!defaults.hasOwnProperty(def)) continue;
     if (typeof params[def] === 'undefined') {
         params[def] = defaults[def];
     }
     else if (typeof params[def] === 'object') {
         for (var deepDef in defaults[def]) {
+            if (!defaults[def].hasOwnProperty(deepDef)) continue;
+
             if (typeof params[def][deepDef] === 'undefined') {
                 params[def][deepDef] = defaults[def][deepDef];
             }
